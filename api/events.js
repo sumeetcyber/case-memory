@@ -1,2 +1,0 @@
-const {send,authorized,supabase}=require('./_lib');
-module.exports=async function(req,res){if(req.method!=='GET')return send(res,405,{error:'Method not allowed'});if(!authorized(req,res))return;try{const {data,error}=await supabase().from('case_memory_events').select('event_id,payload,received_at').order('received_at',{ascending:false}).limit(100);if(error)throw error;return send(res,200,{events:(data||[]).map(x=>({...x.payload,event_id:x.event_id,received_at:x.received_at}))})}catch(e){return send(res,500,{error:e.message})}};

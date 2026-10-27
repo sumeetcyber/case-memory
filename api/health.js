@@ -1,2 +1,0 @@
-const {send,authorized,supabase}=require('./_lib');
-module.exports=async function(req,res){if(req.method!=='GET')return send(res,405,{error:'Method not allowed'});if(!authorized(req,res))return;let database='unavailable';try{const db=supabase();const {error}=await db.from('case_memory_cases').select('id').limit(1);if(error)throw error;database='connected'}catch(e){return send(res,500,{error:e.message,aiConfigured:!!process.env.OPENAI_API_KEY})}return send(res,200,{ok:true,database,aiConfigured:!!process.env.OPENAI_API_KEY})};
