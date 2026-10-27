@@ -1,0 +1,11 @@
+{
+  "name": "case-memory-soc",
+  "version": "0.2.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  }
+}
